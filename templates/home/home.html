@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %} Home | Percepticons{% endblock title%}
+{% block js %} 
+<script>
+let previews = document.getElementsByClassName('preview');
+Array.from(previews).forEach((element)=>{
+        element.innerHTML  = element.innerText; 
+})
+</script>
+{% endblock js %}
+{% block homeactive %} active {% endblock homeactive %}
+
+
+{% block body %}
+
+<!-- <div class="card-deck"> -->
+<div class="row mt-2" >
+
+{% for post in allPosts %}
+    <div class="col-sm-4 col-md-4 col-lg-4 mt-3" >
+      <div class="card border-secondary w-100" >
+        <a href="/blog/{{post.slug}}" style="text-decoration: none;">
+          <img class="card-img-top img-fluid" src="{{ post.background_image | safe }}" alt="">
+      </a>    
+
+
+    <div class="card-body" >
+      <strong class="text-success">{{ post.topic}}</strong>
+      <h5 class="card-title font-weight-bold">{{ post.title  | safe | truncatewords:5}}</h5>
+      <p class="card-text"> {{ post.content | safe | truncatechars:150 }} </p>
+      <a href="/blog/{{post.slug}}"> <button class="btn btn-outline-primary btn-sm">Continue reading</button></a>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated {{post.timeStamp}}</small>
+    </div>
+  </div>
+  <!-- </div> -->
+</div>
+
+
+  {% endfor %}
+</div>
+
+
+{% endblock body %}
+
+

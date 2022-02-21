@@ -1,0 +1,182 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{% block meta_description %}  {% endblock meta_description %}">
+  <meta name="keywords" content="{% block meta_keywords %}  {% endblock meta_keywords %}">
+  <link rel="icon" href="{% static 'images/percepticon_logo.png' %}">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/style.css'%}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap_override.css'%}">
+
+
+  <title>{% block title %}{% endblock title %}</title>
+</head>
+
+<body>
+
+  <nav class="navbar  fixed-top  navbar-expand-lg navbar-light bg-white pt-0 pl-0 pr-0 pb-0">
+    <a class="navbar-brand" href="/">
+
+      <img src="{% static 'images/percepticons_logo.png' %}" width="80" height="80" alt=""><span
+        class="percepticon"></span>
+      {% comment %} <h3 class="font-weight-bold">PerceptiCon</h3> {% endcomment %}
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item {% block homeactive %}{% endblock homeactive %} m-2">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item {% block blogactive %}{% endblock blogactive %} m-2">
+          <a class="nav-link" href="/blog">Blog</a>
+        </li>
+
+        <li class="nav-item {% block contactactive %}{% endblock contactactive %} m-2">
+          <a class="nav-link" href="/contact">Contact <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item {% block aboutactive %}{% endblock aboutactive %} m-2">
+          <a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+
+
+      <form method="get" action="/search" class="form-inline m-1 my-lg-0">
+        <input name="query" id="query" class="form-control mr-sm-1" type="search" placeholder="Search"
+          aria-label="Search">
+        <button class="btn btn-outline-success m-1 my-sm-0" type="submit">Search</button>
+      </form>
+      <!-- <button type="button" class="btn btn-outline-success m-1" data-toggle="modal" data-target="#signupModal">Signup</button>
+      <button type="button" class="btn btn-outline-success m-1" data-toggle="modal" data-target="#loginModal">Login</button> -->
+    </div>
+  </nav>
+
+
+  {% for message in messages %}
+
+  <div class="alert alert-{{ message.tags}} alert-dismissible fade show" role="alert"  style="margin-top: 100px;">
+    <strong>Message: </strong>{{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  {% endfor %}
+
+  {% if current_page == 'home' %}
+  <!-- background image on home page -->
+  <div class="background-image">
+    <img src="{% static 'images/bg_image2.jpg' %}" class="img-fluid" alt="background_image">
+
+    <div class="background-heading">
+      Welcome to Percepticons!
+    </div>
+  </div>
+  {% endif %}
+
+
+
+  <div class="" style="margin-top: 100px;">
+
+    <div class="container-fluid ">
+      <div class="row">
+        <aside class="col-sm-2 col-md-2 col-lg-2">
+          {% if current_page != 'contact' and current_page != 'about' and current_page != 'blogPost' %}
+          <h3 class="text-center">Topic</h3>
+          {% for topic in allTopics %}
+          <a href="/topic/{{topic.topic_id}}" style="text-decoration: none;">
+            <div class="card flex-row flex-wrap mb-1">
+              <div class="card-header border-0">
+                <img width="30px" height="30px" src="{{ topic.topic_image | safe }}" class="img-fluid" alt="">
+              </div>
+              <div class="card-block mx-auto my-auto">
+                <p class="card-text"> {{topic.topic_name}} </p>
+              </div>
+            </div>
+          </a>
+          {% endfor %}
+          {% endif %}
+        </aside>
+
+        <main role="main" class="col-sm-8 col-md-8 col-lg-8">
+          {% block body %}
+
+          {% endblock body %}
+
+        </main>
+        <aside class="col-sm-2 col-md-2 col-lg-2">
+          <p class="text-center"></p>
+        </aside>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="container pr-0 pl-0">
+
+    <hr>
+    <footer class="footer  pr-0 pl-0">
+      <div class="container">
+        <div class="row align-items-center text-center">
+          <div class="col-12 col-lg-4 text-lg-left">
+            © 2022 Percepticons
+          </div>
+
+          <div class="col-12 col-lg-4 mt-4 mt-lg-0">
+            <h3>Percepticons</h3>
+          </div>
+
+          <div class="col-12 col-lg-4 text-lg-right mt-4 mt-lg-0">
+            <ul class="nav justify-content-lg-end justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Privacy</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Terms</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+
+
+
+  {% block js %}{% endblock js %}
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+
+
+</body>
+
+</html>

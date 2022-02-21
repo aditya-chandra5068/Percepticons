@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}   
+
+{% block title %}About | Percepticons {% endblock title%}
+{% block js %} 
+
+{% endblock js %}
+{% block aboutactive %} active {% endblock aboutactive %}
+{% block body %}
+
+<section class="fdb-block team-8">
+  <div class="container">
+    <div class="row text-center justify-content-center">
+      <div class="col-12">
+        <h1 class="font-weight-bold" >About me</h1>
+        <hr class="blue-hr" >
+        <p class="lead">I am building this site to disseminate knowledge about software development processes to the audience with no to less experience in software development cycle.</p>
+      </div>
+    </div>
+
+    <div class="row-100"></div>
+
+      <div class="col-sm-6 mt-5">
+        <div class="row align-items-center">
+          <div class="col-4">
+            <img alt="image" class="img-fluid rounded" src="{% static 'images/aditya.jpg'%}">
+          </div>
+
+          <div class="col-8">
+            <h3><strong>Aditya Chandra</strong></h3>
+            <p class="lead">Software Engineer| Infostretch Corporation</p>
+
+            <p>Seasoned, forward looking Software Engineer with experience in creating and executing innovative software solutions to enhance the business productivity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-70"></div>
+
+    </div>
+
+  </div>
+</section>
+
+
+{% endblock body %}
