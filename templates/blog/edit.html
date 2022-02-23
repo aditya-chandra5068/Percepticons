@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">
+                <h6>Title: (Can be edited)</h6>
+            </label>
+            <div contenteditable="true">
+                <h4>{{ post.title }}</h4>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">
+                <h6>Content: (Can be edited)</h6>
+            </label>
+            <div contenteditable="true">{{post.content|safe}}</div>
+        </div>
+    </form>
+</body>
+
+</html>

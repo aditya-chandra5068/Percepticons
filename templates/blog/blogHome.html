@@ -31,10 +31,8 @@
                                 <a href="/blog/{{post.slug}}"><button class="btn btn-outline-primary btn-sm">Continue reading
                                     </button></a>
                             </div>
-                            <!-- <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb"
-                                    alt="Thumbnail [200x250]" style="width: 200px; height: 250px;"
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT__rwIB_DPwSiuR1nhU0tXTkk3kGA5zYKr-A&usqp=CAU"
-                                    data-holder-rendered="true"> -->
+                            <a href="/blog/{{post.slug}}/edit"><button class="btn btn-outline-primary btn-sm mx-2 my-2">Edit Blog
+                            </button></a>
                         </div>
                     </div>
                 </div>
@@ -64,8 +62,6 @@
                     <li class="page-item "><a class="page-link " href="?page={{allPosts.number}}">{{num}}</a></li> {% endcomment %}
                 {% endif %}
             {% endfor %}
-            
-
             
             {% if allPosts.has_next %}
                 <li class="page-item">

@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http.response import HttpResponse
-# Create your views here.
 
 def about(request):
+    """
+     function to render about details to the UI when "about" endpoint is being hit
+    """
     context = {
         'current_page':'about'
     }

@@ -1,10 +1,9 @@
 from django.db import models
 
-# Create your models here.
-
-
-
 class Topic(models.Model):
+    """
+    Class model to create table for topic in database (Topic database table creation)
+    """
     topic_id = models.AutoField(primary_key=True)
     topic_name = models.CharField(max_length=100)
     topic_image = models.CharField(max_length=200)
@@ -12,8 +11,10 @@ class Topic(models.Model):
     def __str__(self):
         return f"""{self.topic_name}"""        
 
-
 class Post(models.Model):
+    """
+    Class model to create table for Post being saved from admin pannel to database (Post database table creation)
+    """
     PUBLISH = True
     DRAFT = False
 
@@ -31,9 +32,6 @@ class Post(models.Model):
                                 max_length=10,
                                 choices=STATUS_CHOICES,
                                 default=DRAFT,)
-    # auto_slug = '-'.join(str(title).split(" "))
-    # print("Title:----, ",title)
-    # print("SLUG: ",auto_slug)
     slug = models.CharField(max_length=130)
     timeStamp = models.DateField(blank=True)
 
