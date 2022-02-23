@@ -8,15 +8,14 @@ from blog.views import blogHome,blogPost,editPost
 
 class TestUrls(SimpleTestCase):
     """
-    to test urls of every app being regitered
+    to test urls of every app being registered
     """
-
     def test_home_home_url_resolved(self):
         url = reverse('home')        
         self.assertEquals(resolve(url).func,home)
 
     # def test_topic_url_resolved(self):
-    #     url = reverse('topic',args=['topic/01'])        
+    #     url = reverse('topic',args=['topic/01'])
     #     self.assertEquals(resolve(url).func,topic)
 
     def test_home_search_url_resolved(self):

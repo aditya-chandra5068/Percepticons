@@ -25,30 +25,36 @@ def blogHome(request):
 
 def blogPost(request, slug):
     """
-    function to get the blogPost data (like span topic,etc) from Post Model (Post database table) and render it to front end
+    function to get the blogPost data (like span topic,etc) from Post Model (Post database table) and render it to front end,
     """
-    post = Post.objects.filter(slug=slug).first()
-    span_topic = Topic.objects.filter(topic_id=post.topic_id)
-    allTopics = Topic.objects.all()
-    context = {'post':post,
-                'allTopics':allTopics,
-                'current_page':'blogPost',
-                'span_topic':span_topic[0]}
-    return render(request, 'blog/blogPost.html', context)
+    try:
+        post = Post.objects.filter(slug=slug).first()
+        span_topic = Topic.objects.filter(topic_id=post.topic_id)
+        allTopics = Topic.objects.all()
+        context = {'post':post,
+                    'allTopics':allTopics,
+                    'current_page':'blogPost',
+                    'span_topic':span_topic[0]}
+        return render(request, 'blog/blogPost.html', context)
+    except Exception as e:
+        print(e)
 
 def editPost(request, slug):
     """
-    function to get the data from Post Model (Post database table) after is has been edited and then render it to front end
-    this functionality is incomplete as from UI side the function to send edited data through AJAX call is still pending
+    function to get the data from Post Model (Post database table) after it has been edited and then render it to front end,
+    this functionality is incomplete as from UI side the function to send edited data through AJAX call is still pending.
     """
-    post = Post.objects.filter(slug=slug).first()
-    span_topic = Topic.objects.filter(topic_id=post.topic_id)
-    allTopics = Topic.objects.all()
-    context = {'post':post,
-                'allTopics':allTopics,
-                'current_page':'editPost',
-                'span_topic':span_topic[0]} 
-    return render(request, 'blog/edit.html',context)
+    try:
+        post = Post.objects.filter(slug=slug).first()
+        span_topic = Topic.objects.filter(topic_id=post.topic_id)
+        allTopics = Topic.objects.all()
+        context = {'post':post,
+                    'allTopics':allTopics,
+                    'current_page':'editPost',
+                    'span_topic':span_topic[0]} 
+        return render(request, 'blog/edit.html',context)
+    except Exception as e:
+        print(e)
 
 
 
